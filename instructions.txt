@@ -1,0 +1,20 @@
+
+#step 1 
+python3 -m venv venv
+
+#step 2
+source venv/bin/activate
+
+
+#step 3 install fastAPI
+pip install fastapi uvicorn
+
+
+#step 4 after writing the py 
+uvicorn main:app --reload
+
+
+#step 5 install packages to connect to the postgersql
+pip install sqlalchemy psycopg2-binary
+#step 5 installing .env
+pip install python-dotenv
