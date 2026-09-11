@@ -1,4 +1,5 @@
 import pytest
+from app.models import News
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fastapi.testclient import TestClient
