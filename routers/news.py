@@ -7,7 +7,7 @@ from app.schemas import NewsCreate, NewsUpdate, NewsPatch, NewsResponse
 router = APIRouter(prefix="/news")
 
 
-@router.get("/", response_model=list[NewsResponse])
+@router.get("", response_model=list[NewsResponse])
 def get_news(db: Session = Depends(get_db)):
     news = db.query(News).all()
 
