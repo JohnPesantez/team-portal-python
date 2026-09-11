@@ -31,18 +31,3 @@ def get_db():
         yield db
     finally:
         db.close()
-
-TEST_DATABASE_URL = (
-    f"postgresql://{DB_USERNAME}:{DB_PASSWORD}"
-    "@127.0.0.1:5432/team_portal_test"
-)
-test_engine = create_engine(TEST_DATABASE_URL)
-
-Base.metadata.create_all(bind=test_engine)
-
-TestingSessionLocal = sessionmaker(
-    autocommit=False,
-    autoflush=False,
-    bind=test_engine
-)
-

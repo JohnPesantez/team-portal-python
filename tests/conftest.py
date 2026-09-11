@@ -1,10 +1,28 @@
+import os
 import pytest
-from app.models import News
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from fastapi.testclient import TestClient
 from main import app
-from database import Base, get_db, TestingSessionLocal
+from database import Base, get_db
+from app.models import News
+
+DB_USERNAME = os.getenv("DB_USERNAME")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+
+TEST_DATABASE_URL = (
+    f"postgresql://{DB_USERNAME}:{DB_PASSWORD}"
+    "@127.0.0.1:5432/team_portal_test"
+)
+test_engine = create_engine(TEST_DATABASE_URL)
+
+Base.metadata.create_all(bind=test_engine)
+
+TestingSessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=test_engine
+)
 
 
 @pytest.fixture
